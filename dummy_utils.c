@@ -10,60 +10,68 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "utils.h"
 
-void draw_image_to_window(void *mlx_ptr, void *win_ptr, char *image_path)
+void	draw_image_to_window(void *mlx_ptr, void *win_ptr, char *image_path)
 {
-	int img_width;
-	int img_height;
-	void *image_ptr = mlx_xpm_file_to_image(mlx_ptr, image_path,  &img_width, &img_height);
+	int		img_width;
+	int		img_height;
+	void	*image_ptr;
+
+	image_ptr = mlx_xpm_file_to_image(mlx_ptr, image_path, &img_width, \
+			&img_height);
 	if (!image_ptr)
 	{
-		printf("Errore: impossibile caricare l'immagine.\n");
-		return;
+		ft_putstr("Errore: impossibile caricare l'immagine.\n");
+		free(image_ptr);
+		free(mlx_ptr);
+		exit(0);
 	}
-	mlx_put_image_to_window(mlx_ptr, win_ptr, image_ptr,  0, 0);
+	mlx_put_image_to_window(mlx_ptr, win_ptr, image_ptr, 0, 0);
 	mlx_destroy_image(mlx_ptr, image_ptr);
 }
 
 int	key_hook_dummy(int keycode, app_data *app)
-{   
-	if (keycode == ESC_KEY) /*il free non serve*/
+{
+	if (keycode == ESC_KEY)
 	{
-		mlx_destroy_image(app->mlx_data.mlx, app->mlx_data.img);       
+		mlx_destroy_image(app->mlx_data.mlx, app->mlx_data.img);
 		mlx_destroy_window(app->mlx_data.mlx, app->mlx_data.mlx_win);
-		free(app->mlx_data.mlx);       
+		free(app->mlx_data.mlx);
 		exit(0);
-	}    
-	if(keycode == PLUS_KEY)	
-		app->params.iterations += 10;   	
-	if(keycode == MINUS_KEY)	    
-		app->params.iterations -= 10;  
-	draw_fractal(app); 	
-return (0);
+	}
+	if (keycode == PLUS_KEY)
+		app->params.iterations += 10;
+	if (keycode == MINUS_KEY)
+		app->params.iterations -= 10;
+	draw_fractal(app);
+	return (0);
 }
 
-int close_dummy_hook(app_data *app) 
+int	close_dummy_hook(app_data *app)
 {
-	mlx_destroy_image(app->mlx_data.mlx, app->mlx_data.img);       
+	mlx_destroy_image(app->mlx_data.mlx, app->mlx_data.img);
 	mlx_destroy_window(app->mlx_data.mlx, app->mlx_data.mlx_win);
-	free(app->mlx_data.mlx);       
+	free(app->mlx_data.mlx);
 	exit(0);
 }
 
 int	mouse_motion_hook(int x, int y, app_data *app)
 {
-	char     xcoord[20];
-	char     ycoord[20];
-	void    *mlx_ptr = app->mlx_data.mlx;
-	void    *win_ptr = app->mlx_data.mlx_win;
-	t_dtoa stupidnorm;
+	char		xcoord[20];
+	char		ycoord[20];
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_dtoa		stupidnorm;
 
+	win_ptr = app->mlx_data.mlx_win;
+	mlx_ptr = app->mlx_data.mlx;
 	if (app->params.type == 'j')
 	{
-		app->params.j_re = scaling(x, 0, WIDTH/2, -2, 2)*0.81*app->params.zoom + (app->params.xshift-0.5);
-		app->params.j_im = scaling(y, 0, HEIGHT/2, 2, -2)*0.81*app->params.zoom + (app->params.yshift-0.405);
+		app->params.j_re = scaling(x, 0, WIDTH / 2, -2, 2) * 0.81 * \
+			app->params.zoom + (app->params.xshift - 0.5);
+		app->params.j_im = scaling(y, 0, HEIGHT / 2, 2, -2) * 0.81 * \
+			app->params.zoom + (app->params.yshift - 0.405);
 	}
 	ft_dtoa((float)app->params.j_re, xcoord, &stupidnorm);
 	ft_dtoa((float)app->params.j_im, ycoord, &stupidnorm);
@@ -72,23 +80,19 @@ int	mouse_motion_hook(int x, int y, app_data *app)
 	mlx_string_put(mlx_ptr, win_ptr, 693, 26, 0x000000, "Im(c):");
 	mlx_string_put(mlx_ptr, win_ptr, 745, 26, 0x000000, ycoord);
 	draw_fractal(app);
-	return 0;
+	return (0);
 }
 
-int dummy_mdl(app_data *app)
+int	dummy_mdl(app_data *app)
 {
-	void    *mlx_ptr;
-	void    *win_ptr;
+	void	*mlx_ptr;
+	void	*win_ptr;
 
 	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, 330, 220, "Mandelbrot Set");    
+	win_ptr = mlx_new_window(mlx_ptr, 330, 220, "Mandelbrot Set");
 	draw_image_to_window(mlx_ptr, win_ptr, "mdl_resized.xpm");
-	mlx_hook(win_ptr, 6, 1L<<6, &mouse_motion_hook, app);
+	mlx_hook(win_ptr, 6, 1L << 6, &mouse_motion_hook, app);
 	mlx_key_hook(win_ptr, &key_hook_dummy, app);
-	mlx_hook(win_ptr, 17, 1L<<0, &close_dummy_hook, app);
-	
+	mlx_hook(win_ptr, 17, 1L << 0, &close_dummy_hook, app);
 	mlx_loop(mlx_ptr);
 }
-
-
-
