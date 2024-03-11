@@ -22,20 +22,20 @@ int	*julia_pixel_check(double x, double y, parameters *params)
 	Complex	c;
 	int		*output;
 
-	output = (int *)calloc(2, sizeof(int));   
+	output = (int *)calloc(2, sizeof(int));
 	i = 0;
-	z.re = scaling(x, 0, WIDTH, -BOUND, BOUND)*params->zoom + params-> xshift;   
-	z.im = scaling(y, 0, HEIGHT, BOUND, -BOUND)*params->zoom + params-> yshift;    
+	z.re = scaling(x, 0, WIDTH, -2, 2) * params->zoom + params-> xshift;
+	z.im = scaling(y, 0, HEIGHT, 2, -2) * params->zoom + params-> yshift;
 	c.re = params->j_re;
-	c.im = params->j_im;    
+	c.im = params->j_im;
 	while (i < params->iterations + 65)
 	{
-		z = c_sum(c_sqr(z),c);
+		z = c_sum(c_sqr(z), c);
 		if (c_mod(z) > 2)
 		{
 			output[0] = 0;
-			output[1] = i + 1 -(log(2)/c_mod(z))/log(2)
-			return output;
+			output[1] = i + 1 - (log(2) / c_mod(z)) / log(2);
+			return (output);
 		}
 		i++;
 	}
@@ -43,7 +43,7 @@ int	*julia_pixel_check(double x, double y, parameters *params)
 	return (output);
 }
 
-int *mdl_pixel_check(double x, double y,parameters *params)
+int	*mdl_pixel_check(double x, double y, parameters *params)
 {
 	int		i;
 	Complex	z;
@@ -55,16 +55,16 @@ int *mdl_pixel_check(double x, double y,parameters *params)
 	i = 0;
 	z.re = 0 + params->z0;
 	z.im = 0 + params->z0;
-	c.re = scaling(x, 0, WIDTH, -BOUND, BOUND)*params->zoom + params-> xshift;
-	c.im = scaling(y, 0, HEIGHT, BOUND, -BOUND)*params->zoom + params-> yshift;
+	c.re = scaling(x, 0, WIDTH, -2, 2) * params->zoom + params-> xshift;
+	c.im = scaling(y, 0, HEIGHT, 2, -2) * params->zoom + params-> yshift;
 	while (i < params->iterations)
 	{
-		z = c_sum(c_sqr(z),c);
+		z = c_sum(c_sqr(z), c);
 		if (c_mod(z) > 2)
 		{
 			output[0] = 0;
-			output[1] =  i + 1 -(log(2)/c_mod(z))/log(2);
-			return output;
+			output[1] = i + 1 - (log(2) / c_mod(z)) / log(2);
+			return (output);
 		}
 		i++;
 	}
@@ -72,14 +72,14 @@ int *mdl_pixel_check(double x, double y,parameters *params)
 	return (output);
 }
 
-int *ship_pixel_check(double x, double y, parameters *params)
+int	*ship_pixel_check(double x, double y, parameters *params)
 {
 	int		i;
 	Complex	z;
 	Complex	c;
-	int		*output; 
+	int		*output;
 	double	tmp;
-	
+
 	output = (int *)calloc(2, sizeof(int));
 	ship_init(&i, &z, params);
 	c.re = scaling(x, 0, WIDTH, -2, 2) * params->zoom + params->xshift;
@@ -91,12 +91,12 @@ int *ship_pixel_check(double x, double y, parameters *params)
 		z.im = tmp;
 		if (c_mod(z) > 2)
 		{
-			i = i + 1 -(log(2)/c_mod(z))/log(2);
+			i = i + 1 - (log(2) / c_mod(z)) / log(2);
 			output[0] = 0;
 			output[1] = i;
-			return output;
+			return (output);
 		}
 	}
 	output[0] = 1;
-	return output;
+	return (output);
 }
