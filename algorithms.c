@@ -24,8 +24,8 @@ int	*julia_pixel_check(double x, double y, parameters *params)
 
 	output = (int *)calloc(2, sizeof(int));
 	i = 0;
-	z.re = scaling(x, 0, WIDTH, -2, 2) * params->zoom + params-> xshift;
-	z.im = scaling(y, 0, HEIGHT, 2, -2) * params->zoom + params-> yshift;
+	z.re = scaling2(x, 0, W, (t_i){-2, 2}) * params->zoom + params->xshift;
+	z.im = scaling2(y, 0, H, (t_i){2, -2}) * params->zoom + params->yshift;
 	c.re = params->j_re;
 	c.im = params->j_im;
 	while (i < params->iterations + 65)
@@ -55,8 +55,8 @@ int	*mdl_pixel_check(double x, double y, parameters *params)
 	i = 0;
 	z.re = 0 + params->z0;
 	z.im = 0 + params->z0;
-	c.re = scaling(x, 0, WIDTH, -2, 2) * params->zoom + params-> xshift;
-	c.im = scaling(y, 0, HEIGHT, 2, -2) * params->zoom + params-> yshift;
+	c.re = scaling2(x, 0, W, (t_i){-2, 2}) * params->zoom + params-> xshift;
+	c.im = scaling2(y, 0, H, (t_i){2, -2}) * params->zoom + params-> yshift;
 	while (i < params->iterations)
 	{
 		z = c_sum(c_sqr(z), c);
@@ -82,8 +82,8 @@ int	*ship_pixel_check(double x, double y, parameters *params)
 
 	output = (int *)calloc(2, sizeof(int));
 	ship_init(&i, &z, params);
-	c.re = scaling(x, 0, WIDTH, -2, 2) * params->zoom + params->xshift;
-	c.im = scaling(600 - y, 0, 600, 2, -2) * params->zoom - params->yshift;
+	c.re = scaling2(x, 0, W, (t_i){-2, 2}) * params->zoom + params->xshift;
+	c.im = scaling2(H - y, 0, H, (t_i){2, -2}) * params->zoom - params->yshift;
 	while (i++ < params->iterations)
 	{
 		tmp = 2 * fabs(z.re) * fabs(z.im) + c.im;
