@@ -6,7 +6,7 @@
 /*   By: lsquarci <lsquarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:10:01 by lsquarci          #+#    #+#             */
-/*   Updated: 2024/03/11 10:29:05 by lsquarci         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:44:06 by lsquarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ Complex c_product(Complex z1, Complex z2)
 
 double scaling(double nbr, double old_min, double old_max, double new_min, double new_max)
 {
-    return((new_max - new_min)*((nbr - old_min)/(old_max - old_min)) + new_min);
+	return((new_max - new_min)*((nbr - old_min)/(old_max - old_min)) + new_min);
 }
 

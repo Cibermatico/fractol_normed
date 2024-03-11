@@ -6,7 +6,7 @@
 /*   By: lsquarci <lsquarci@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 10:10:29 by lsquarci          #+#    #+#             */
-/*   Updated: 2024/03/11 10:10:30 by lsquarci         ###   ########.fr       */
+/*   Updated: 2024/03/11 12:49:48 by lsquarci         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@
 void	ft_putstr(char *str)
 {
 	int i;
-    int res;
+	int res;
 
 	i = 0;
-    res = 0;
+	res = 0;
 	while (str[i])
 	{
 		res = write(1,&str[i],1);
-        if (res)
-		    i++;
-        else
-            break;
+		if (res)
+			i++;
+		else
+			break;
 	}
-    return;
+	return;
 }
 
 int	ft_strncmp(char const *s1, char const *s2, size_t n)
