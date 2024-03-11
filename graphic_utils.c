@@ -12,9 +12,9 @@
 
 #include "utils.h"
 
-int get_hexcolor(int red, int green, int blue)
+int	get_hexcolor(int red, int green, int blue)
 {
-	return (red << 16) | (green << 8) | blue;
+	return ((red << 16) | (green << 8) | blue);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
@@ -22,6 +22,5 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	char	*dst;
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	*(unsigned int *)dst = color;
 }
-
