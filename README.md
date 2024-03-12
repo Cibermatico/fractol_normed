@@ -10,4 +10,4 @@ The code may look overcomplicated and exceedingly fragmented because of the norm
 - no global variables;
 
 Further versions with more readable code, new features and macOS compatibility could be provided.
-Written by Lorenzo Squarcia, normed with ChatGPT 3.5.
+Written by Lorenzo Squarcia, normed with the help of ChatGPT 3.5.
