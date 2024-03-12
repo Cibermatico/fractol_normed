@@ -31,7 +31,7 @@ void	draw_image_to_window(void *mlx_ptr, void *win_ptr, char *image_path)
 	mlx_destroy_image(mlx_ptr, image_ptr);
 }
 
-int	key_hook_dummy(int keycode, app_data *app)
+int	key_hook_dummy(int keycode, t_app *app)
 {
 	if (keycode == ESC_KEY)
 	{
@@ -48,7 +48,7 @@ int	key_hook_dummy(int keycode, app_data *app)
 	return (0);
 }
 
-int	close_dummy_hook(app_data *app)
+int	close_dummy_hook(t_app *app)
 {
 	mlx_destroy_image(app->mlx_data.mlx, app->mlx_data.img);
 	mlx_destroy_window(app->mlx_data.mlx, app->mlx_data.mlx_win);
@@ -56,7 +56,7 @@ int	close_dummy_hook(app_data *app)
 	exit(0);
 }
 
-int	mouse_motion_hook(int x, int y, app_data *app)
+int	mouse_motion_hook(int x, int y, t_app *app)
 {
 	char		xcoord[20];
 	char		ycoord[20];
@@ -68,9 +68,9 @@ int	mouse_motion_hook(int x, int y, app_data *app)
 	mlx_ptr = app->mlx_data.mlx;
 	if (app->params.type == 'j')
 	{
-		app->params.j_re = scaling(x, 0, WIDTH / 2, -2, 2) * 0.81 * \
+		app->params.j_re = scaling2(x, 0, W / 2, (t_i){-2, 2}) * 0.81 * \
 			app->params.zoom + (app->params.xshift - 0.5);
-		app->params.j_im = scaling(y, 0, HEIGHT / 2, 2, -2) * 0.81 * \
+		app->params.j_im = scaling2(y, 0, H / 2, (t_i){2, -2}) * 0.81 * \
 			app->params.zoom + (app->params.yshift - 0.405);
 	}
 	ft_dtoa((float)app->params.j_re, xcoord, &stupidnorm);
@@ -83,7 +83,7 @@ int	mouse_motion_hook(int x, int y, app_data *app)
 	return (0);
 }
 
-int	dummy_mdl(app_data *app)
+int	dummy_mdl(t_app *app)
 {
 	void	*mlx_ptr;
 	void	*win_ptr;

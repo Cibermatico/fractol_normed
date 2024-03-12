@@ -10,25 +10,24 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "utils.h"
 
 void	ft_putstr(char *str)
 {
-	int i;
-	int res;
+	int	i;
+	int	res;
 
 	i = 0;
 	res = 0;
 	while (str[i])
 	{
-		res = write(1,&str[i],1);
+		res = write(1, &str[i], 1);
 		if (res)
 			i++;
 		else
-			break;
+			break ;
 	}
-	return;
+	return ;
 }
 
 int	ft_strncmp(char const *s1, char const *s2, size_t n)
@@ -95,5 +94,3 @@ double	ft_atod(char *s)
 	}
 	return ((integer_part + fractional_part) * sign);
 }
-
-

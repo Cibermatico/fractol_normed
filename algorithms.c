@@ -10,16 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <math.h>
-#include <printf.h>
 #include "utils.h"
 
-int	*julia_pixel_check(double x, double y, parameters *params)
+int	*julia_pixel_check(double x, double y, t_parameters *params)
 {
 	int		i;
-	Complex	z;
-	Complex	tmp;
-	Complex	c;
+	t_compl	z;
+	t_compl	tmp;
+	t_compl	c;
 	int		*output;
 
 	output = (int *)calloc(2, sizeof(int));
@@ -43,12 +41,12 @@ int	*julia_pixel_check(double x, double y, parameters *params)
 	return (output);
 }
 
-int	*mdl_pixel_check(double x, double y, parameters *params)
+int	*mdl_pixel_check(double x, double y, t_parameters *params)
 {
 	int		i;
-	Complex	z;
-	Complex	tmp;
-	Complex	c;
+	t_compl	z;
+	t_compl	tmp;
+	t_compl	c;
 	int		*output;
 
 	output = (int *)calloc(2, sizeof(int));
@@ -72,11 +70,11 @@ int	*mdl_pixel_check(double x, double y, parameters *params)
 	return (output);
 }
 
-int	*ship_pixel_check(double x, double y, parameters *params)
+int	*ship_pixel_check(double x, double y, t_parameters *params)
 {
 	int		i;
-	Complex	z;
-	Complex	c;
+	t_compl	z;
+	t_compl	c;
 	int		*output;
 	double	tmp;
 

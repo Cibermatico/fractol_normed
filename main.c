@@ -10,16 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include <math.h>
-#include <stdlib.h>
 #include "utils.h"
 
-void	process_pixel(app_data *app, int x, int y)
+void	process_pixel(t_app *app, int x, int y)
 {
-	int			*test;
-	parameters	*params;
-	t_data		*mlx;
+	int				*test;
+	t_parameters	*params;
+	t_data			*mlx;
 
 	params = &(app->params);
 	mlx = &(app->mlx_data);
@@ -38,7 +35,7 @@ void	process_pixel(app_data *app, int x, int y)
 	free(test);
 }
 
-void	draw_fractal(app_data *app)
+void	draw_fractal(t_app *app)
 {
 	int		y;
 	int		x;
@@ -46,9 +43,9 @@ void	draw_fractal(app_data *app)
 
 	y = 0;
 	x = 0;
-	while (y < HEIGHT)
+	while (y < H)
 	{
-		while (x < WIDTH)
+		while (x < W)
 		{
 			process_pixel(app, x, y);
 			x++;
@@ -63,7 +60,7 @@ void	draw_fractal(app_data *app)
 
 int	main(int argc, char *argv[])
 {
-	app_data	app;
+	t_app	app;
 
 	if (argc == 1)
 		print_intro();
@@ -74,7 +71,7 @@ int	main(int argc, char *argv[])
 	else if (argc == 4 && !ft_strncmp(argv[1], "julia", 5))
 		set_julia_params(&app, argv[2], argv[3]);
 	else if (argc == 6 && !ft_strncmp(argv[1], "phoenix", 7))
-		set_phoenix_params(&app, argv[2], argv[3], argv[4], argv[5]);
+		set_phoenix_params(&app, argv + 2);
 	else
 		print_error();
 	draw_fractal(&app);

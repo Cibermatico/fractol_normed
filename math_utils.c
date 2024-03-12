@@ -12,32 +12,32 @@
 
 #include "utils.h"
 
-Complex	c_sum(Complex z1, Complex z2)
+t_compl	c_sum(t_compl z1, t_compl z2)
 {
-	Complex	res;
+	t_compl	res;
 
 	res.re = z1.re + z2.re;
 	res.im = z1.im + z2.im;
 	return (res);
 }
 
-double	c_mod(Complex z)
+double	c_mod(t_compl z)
 {
 	return (sqrt(z.re * z.re + z.im * z.im));
 }
 
-Complex	c_sqr(Complex z1)
+t_compl	c_sqr(t_compl z1)
 {
-	Complex	res;
+	t_compl	res;
 
 	res.re = (z1.re * z1.re) - (z1.im * z1.im);
 	res.im = (2 * z1.im * z1.re);
 	return (res);
 }
 
-Complex	c_product(Complex z1, Complex z2)
+t_compl	c_product(t_compl z1, t_compl z2)
 {
-	Complex	res;
+	t_compl	res;
 
 	res.re = (z1.re * z2.re) - (z1.im * z2.im);
 	res.im = (z1.re * z2.im) + (z1.im * z2.re);

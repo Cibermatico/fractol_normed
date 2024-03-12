@@ -12,7 +12,7 @@
 
 #include "utils.h"
 
-void	fractal_init(parameters *params)
+void	fractal_init(t_parameters *params)
 {
 	params->xshift = 0;
 	params->yshift = 0;
@@ -27,12 +27,12 @@ void	fractal_init(parameters *params)
 	params -> pk_im = 0.0;
 }
 
-void	system_init(app_data *app)
+void	system_init(t_app *app)
 {
 	app->mlx_data.mlx = mlx_init();
-	app->mlx_data.mlx_win = mlx_new_window(app->mlx_data.mlx, 800, 600, \
+	app->mlx_data.mlx_win = mlx_new_window(app->mlx_data.mlx, W, H, \
 			"Fractal explorer");
-	app->mlx_data.img = mlx_new_image(app->mlx_data.mlx, 800, 600);
+	app->mlx_data.img = mlx_new_image(app->mlx_data.mlx, W, H);
 	app->mlx_data.addr = mlx_get_data_addr(app->mlx_data.img, \
 			&app->mlx_data.bits_per_pixel, &app->mlx_data.line_length, \
 			&app->mlx_data.endian);
@@ -42,7 +42,7 @@ void	system_init(app_data *app)
 			&(app->mlx_data));
 }
 
-void	ship_init(int *i, Complex *z, parameters *params)
+void	ship_init(int *i, t_compl *z, t_parameters *params)
 {
 	*i = 0;
 	z->re = params-> z0;

@@ -32,7 +32,7 @@
 #define Z 122
 #define R 114
 
-typedef struct s_pippo
+typedef struct s_dtoa
 {
 	long long int	length;
 	long long int	length2;
@@ -46,7 +46,7 @@ typedef struct s_pippo
 typedef struct s_parameters
 {
 	char	type;
-	int	iterations;
+	int		iterations;
 	double	zoom;
 	double	xshift;
 	double	yshift;
@@ -58,7 +58,7 @@ typedef struct s_parameters
 	double	pc_im;
 	double	pk_re;
 	double	pk_im;
-}	parameters;
+}	t_parameters;
 
 typedef struct s_data
 {
@@ -66,29 +66,29 @@ typedef struct s_data
 	void	*mlx_win;
 	void	*img;
 	char	*addr;
-	int	bits_per_pixel;
-	int	line_length;
-	int	endian;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
 }	t_data;
 
-typedef struct s_app_data
+typedef struct s_t_app
 {
-	parameters	params;
+	t_parameters	params;
 	t_data			mlx_data;
-}	app_data;
+}	t_app;
 
 typedef struct s_color_render
 {
 	int	r;
 	int	g;
 	int	b;
-}	color_render;
+}	t_color;
 
-typedef struct s_ciao
+typedef struct s_complex_nbr
 {
 	double	re;
 	double	im;
-}	Complex;
+}	t_compl;
 
 typedef struct s_target_interval
 {
@@ -98,44 +98,45 @@ typedef struct s_target_interval
 
 typedef struct s_aintseiya
 {
-	Complex	z;
-	Complex	c;
-	int			i;
+	t_compl	z;
+	t_compl	c;
+	int		i;
 }	t_phoenix;
 
-Complex				c_sum(Complex z1, Complex z2);
-double				c_mod(Complex z);
-Complex				c_sqr(Complex z1);
-Complex				c_product(Complex z1, Complex z2);
-Complex				mandelbrot(Complex z, Complex c);
-void			draw_fractal(app_data *app);
-int			key_hook(int keycode, app_data *app);
-int			close_button_hook(void *param);
-int			mouse_scroll_hook(int button, int x, int y, app_data *app);
-int			get_hexcolor(int red, int green, int blue);
-void			fractal_init(parameters *params);
-int			*julia_pixel_check(double x, double y, parameters *params);
-int			ft_strncmp(char const *s1, char const *s2, size_t n);
-int			*mdl_pixel_check(double x, double y, parameters *params);
-int			*ship_pixel_check(double x, double y, parameters *params);
-int			color_blender(int i, parameters *params);
-int			*phoenix_pixel_check(double x, double y, parameters *params);
-void			system_init(app_data *app);
+t_compl			c_sum(t_compl z1, t_compl z2);
+double			c_mod(t_compl z);
+t_compl			c_sqr(t_compl z1);
+t_compl			c_product(t_compl z1, t_compl z2);
+t_compl			mandelbrot(t_compl z, t_compl c);
+void			draw_fractal(t_app *app);
+int				key_hook(int keycode, t_app *app);
+int				close_button_hook(void *param);
+int				mouse_scroll_hook(int button, int x, int y, t_app *app);
+int				get_hexcolor(int red, int green, int blue);
+void			fractal_init(t_parameters *params);
+int				*julia_pixel_check(double x, double y, t_parameters *params);
+int				ft_strncmp(char const *s1, char const *s2, size_t n);
+int				*mdl_pixel_check(double x, double y, t_parameters *params);
+int				*ship_pixel_check(double x, double y, t_parameters *params);
+int				color_blender(int i, t_parameters *params);
+int				*phoenix_pixel_check(double x, double y, t_parameters *params);
+void			system_init(t_app *app);
 double			ft_atod(char *s);
-void				print_intro(void);
-void				ft_putstr(char *str);
-void				set_fractal_type(app_data *app, char *arg);
-void				set_julia_params(app_data *app, char *arg1, char *arg2);
-void				set_phoenix_params(app_data *app, char *args[]);
-void				print_error(void);
-void				draw_legend(t_data *mlx);
-void				ship_init(int *i, Complex *z, parameters *params);
-int					mouse_motion_hook(int x, int y, app_data *app);
-void				draw_image_to_window(void *mlx_ptr, void *win_ptr, \
+void			print_intro(void);
+void			ft_putstr(char *str);
+void			set_fractal_type(t_app *app, char *arg);
+void			set_julia_params(t_app *app, char *arg1, char *arg2);
+void			set_phoenix_params(t_app *app, char *args[]);
+void			print_error(void);
+void			draw_legend(t_data *mlx);
+void			ship_init(int *i, t_compl *z, t_parameters *params);
+int				mouse_motion_hook(int x, int y, t_app *app);
+void			draw_image_to_window(void *mlx_ptr, void *win_ptr, \
 			char *image_path);
-int					dummy_mdl(app_data *app);
-unsigned int		*color_mdl(int *i);
-void				my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void				ft_dtoa(float f, char r[], t_dtoa *context);
-void				print_remark(void);
-double				scaling2(double nbr, double old_min, double old_max, t_i new_interval);
+int				dummy_mdl(t_app *app);
+unsigned int	*color_mdl(int *i);
+void			my_mlx_pixel_put(t_data *data, int x, int y, int color);
+void			ft_dtoa(float f, char r[], t_dtoa *context);
+void			print_remark(void);
+double			scaling2(double nbr, double old_min, \
+		double old_max, t_i new_interval);

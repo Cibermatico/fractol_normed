@@ -23,7 +23,7 @@ int	close_button_hook(void *param)
 	exit(0);
 }
 
-int	mouse_scroll_hook(int button, int x, int y, app_data *app)
+int	mouse_scroll_hook(int button, int x, int y, t_app *app)
 {
 	if (button == SCR_UP)
 	{
@@ -37,7 +37,7 @@ int	mouse_scroll_hook(int button, int x, int y, app_data *app)
 	return (0);
 }
 
-static void	handle_shift(int keycode, parameters *params)
+static void	handle_shift(int keycode, t_parameters *params)
 {
 	float	shift_factor;
 
@@ -52,7 +52,7 @@ static void	handle_shift(int keycode, parameters *params)
 		params->yshift -= shift_factor;
 }
 
-int	key_hook(int keycode, app_data *app)
+int	key_hook(int keycode, t_app *app)
 {
 	if (keycode == ESC_KEY)
 	{

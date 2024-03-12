@@ -10,10 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "utils.h"
 
-void set_fractal_type(app_data *app, char *arg)
+void	set_fractal_type(t_app *app, char *arg)
 {
 	if (!ft_strncmp(arg, "mandelbrot", 10))
 		app->params.type = 'm';
@@ -29,18 +28,18 @@ void set_fractal_type(app_data *app, char *arg)
 		print_error();
 }
 
-void set_julia_params(app_data *app, char *arg1, char *arg2)
+void	set_julia_params(t_app *app, char *arg1, char *arg2)
 {
 	app->params.type = 'j';
 	app->params.j_re = ft_atod(arg1);
 	app->params.j_im = ft_atod(arg2);
 }
 
-void set_phoenix_params(app_data *app, char *arg1, char *arg2, char *arg3, char *arg4) {
+void	set_phoenix_params(t_app *app, char *args[])
+{
 	app->params.type = 'p';
-	app->params.pc_re = ft_atod(arg1);
-	app->params.pc_im = ft_atod(arg2);
-	app->params.pk_re = ft_atod(arg3);
-	app->params.pk_im = ft_atod(arg4);
+	app->params.pc_re = ft_atod(args[0]);
+	app->params.pc_im = ft_atod(args[1]);
+	app->params.pk_re = ft_atod(args[2]);
+	app->params.pk_im = ft_atod(args[3]);
 }
-
