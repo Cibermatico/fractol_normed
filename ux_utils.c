@@ -56,7 +56,7 @@ void	print_intro(void)
 	ft_putstr("./fractol phoenix: show Phoenix Julia set.\n");
 	ft_putstr("./fractol phoenix [c_re] [c_im] [k_re] [k_im]:");
 	ft_putstr("show Phoenix Julia set associated with the points provided.\n");
-	ft_putstr("./fractol julia_map: surprise!\n");
+	ft_putstr("./fractol julia_map: discover your own fractal!\n");
 	ft_putstr("./fractol remarkable: suggestion for remarkable fractals.\n");
 	exit(0);
 }
