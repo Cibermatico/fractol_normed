@@ -8,6 +8,6 @@ The code may look overcomplicated and exceedingly fragmented because of the norm
 - max 5 variable declarations;
 - max 5 functions per file;
 - no global variables;
-Further versions with more readable code, new features and macOS compatibility could be provided.
 
+Further versions with more readable code, new features and macOS compatibility could be provided.
 Written by Lorenzo Squarcia, normed with ChatGPT 3.5.
