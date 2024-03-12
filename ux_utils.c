@@ -63,7 +63,7 @@ void	print_intro(void)
 
 void	print_error(void)
 {
-	ft_putstr("Invalid t_parameters");
+	ft_putstr("Invalid parameters");
 	ft_putstr("\n");
 	exit(0);
 }
