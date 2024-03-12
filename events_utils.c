@@ -23,6 +23,14 @@ int	close_button_hook(void *param)
 	exit(0);
 }
 
+int	close_dummy_hook(t_app *app)
+{
+	mlx_destroy_image(app->mlx_data.mlx, app->mlx_data.img);
+	mlx_destroy_window(app->mlx_data.mlx, app->mlx_data.mlx_win);
+	free(app->mlx_data.mlx);
+	exit(0);
+}
+
 int	mouse_scroll_hook(int button, int x, int y, t_app *app)
 {
 	if (button == SCR_UP)

@@ -48,12 +48,12 @@ int	key_hook_dummy(int keycode, t_app *app)
 	return (0);
 }
 
-int	close_dummy_hook(t_app *app)
+static void	print_coord(char *xcoord, char *ycoord)
 {
-	mlx_destroy_image(app->mlx_data.mlx, app->mlx_data.img);
-	mlx_destroy_window(app->mlx_data.mlx, app->mlx_data.mlx_win);
-	free(app->mlx_data.mlx);
-	exit(0);
+	ft_putstr(xcoord);
+	ft_putstr(" ");
+	ft_putstr(ycoord);
+	ft_putstr("\n");
 }
 
 int	mouse_motion_hook(int x, int y, t_app *app)
@@ -80,6 +80,7 @@ int	mouse_motion_hook(int x, int y, t_app *app)
 	mlx_string_put(mlx_ptr, win_ptr, 693, 26, 0x000000, "Im(c):");
 	mlx_string_put(mlx_ptr, win_ptr, 745, 26, 0x000000, ycoord);
 	draw_fractal(app);
+	print_coord(xcoord, ycoord);
 	return (0);
 }
 

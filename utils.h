@@ -140,3 +140,4 @@ void			ft_dtoa(float f, char r[], t_dtoa *context);
 void			print_remark(void);
 double			scaling2(double nbr, double old_min, \
 		double old_max, t_i new_interval);
+int				close_dummy_hook(t_app *app);
