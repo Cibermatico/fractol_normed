@@ -65,5 +65,6 @@ void	print_error(void)
 {
 	ft_putstr("Invalid parameters");
 	ft_putstr("\n");
+	print_intro(void);
 	exit(0);
 }
