@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
+#include "mlx_linux/mlx.h"
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -21,8 +21,8 @@
 #define H 600
 #define BOUND 2
 #define ESC_KEY 65307
-#define PLUS_KEY 43
-#define MINUS_KEY 45
+#define PLUS_KEY 65451
+#define MINUS_KEY 65453
 #define RIGHT 65363
 #define LEFT 65361
 #define UP 65362
